@@ -10,7 +10,13 @@ To see how the module would work (locally):
 
 1. Run the consumer:
 
-  `node test/index.js`
+  `node test/consumer-client.js`
+
+1. Simulate a `member-registered` event sent by the [forwarder lambda](forwarder/handler.js).
+
+  In a different shell, run:
+
+  `node test/forwarder-lambda.js`
 
 1. Simulate a `member-registered` event sent by the [forwarder lambda](forwarder/handler.js).
 
@@ -45,4 +51,4 @@ _This still does not include runtime registration, so there is no code for the p
 ## Pending
 * Setup a consumer with an internet-facing endpoint.
 * Hardcode the endpoint vs eventType
-* Be consistent with the names. 
+* Be consistent with the names.
