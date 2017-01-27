@@ -1,0 +1,30 @@
+{
+  "name": "stream-consumer-spike",
+  "version": "0.0.1",
+  "description": "A spike for one crazy idea to create NodeJS stream clients with a Lambda instead of a Java dependency.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pameck/stream-consumer-spike.git"
+  },
+  "keywords": [
+    "stream",
+    "spike",
+    "aws",
+    "nodejs"
+  ],
+  "author": "Pam Rucinque",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pameck/stream-consumer-spike/issues"
+  },
+  "homepage": "https://github.com/pameck/stream-consumer-spike#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
+  }
+}
