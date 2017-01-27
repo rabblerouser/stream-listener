@@ -11,8 +11,12 @@ app.use(bodyParser.json());
 const consumer = stream.consumer();
 app.post('/events', consumer.processor);
 
-consumer.on('registration', event => {
+consumer.on('member-registered', event => {
   console.log('Yup, got it!', event);
+});
+
+consumer.on('member-created', event => {
+  console.log('Yeah, got this one too!', event);
 });
 
 app.listen(3000, function () {
