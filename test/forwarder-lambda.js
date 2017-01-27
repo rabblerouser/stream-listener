@@ -34,4 +34,4 @@ simulateKinesisEvent(kinesisEvent, context, whatevs);
 
 setTimeout(function () {
   console.log('haaaaaack');
-}, 10000);
+}, 5000);
