@@ -1,12 +1,11 @@
 # SPIKE!!
 
-### Pre-requisites
-
-* [AWS Account all setup]
-* [A Kinesis Stream](https://aws.amazon.com/kinesis/streams/)
-
 ## Usage
 To see how the module would work (locally):
+
+1. Install dependecies:
+
+  `npm i`
 
 1. Run the consumer:
 
@@ -38,7 +37,11 @@ To see how the module would work (locally):
 [AWS Account all setup]: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
 
 ## To deploy an event broadcaster Lambda
-You're going to need to setup:
+
+### Pre-requisites
+
+* [AWS Account all setup]
+* [A Kinesis Stream](https://aws.amazon.com/kinesis/streams/)
 * [Serverless]
 
 Then run:
