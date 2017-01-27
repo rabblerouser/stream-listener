@@ -9,6 +9,7 @@ provider:
 package:
  include:
    - forwarder/**
+   - node_modules/**
  exclude:
    - "*/**"
    - "*"
