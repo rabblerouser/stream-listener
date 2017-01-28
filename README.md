@@ -1,4 +1,18 @@
-# SPIKE!!
+# NodeJS consumer-client Spike
+
+## Background.
+AWS Kinesis consumers need to be constantly polling the stream for new events (with a dedicated thread for it).
+NodeJS will struggle with this as it is single-threaded.
+
+So, the solution I'm spiking out is to create a dedicated function for polling the stream, and once it gets a new event from Kinesis, it will notify the consumers
+through HTTP requests.
+
+![Solution](docs/event-pub-sub.png)
+
+### Components
+* An AWS Lambda that will listen to the Kinesis stream and notify the subscribers
+* A consumer with an endpoint enabled to get the http requests from the lambda
+* An npm module to map the http requests with the event to a specific callback.
 
 ## Usage
 To see how the module would work (locally):
@@ -17,7 +31,7 @@ To see how the module would work (locally):
 
     `node test/forwarder-lambda.js`
 
-  1. If your computer acts up like mine did, and you don't want to put in the effort on figuring out why, then do this: 
+  1. If your computer acts up like mine did, and you don't want to put in the effort on figuring out why, then do this:
 
     ``` bash
     curl -X POST -H "Content-Type: application/json" \
