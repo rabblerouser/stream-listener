@@ -3,13 +3,12 @@ var _ = require('lodash');
 var request = require('request-promise');
 
 var subscribers = {
-  'member-registered': ['http://127.0.0.1:3000/events']
+  'member-registered': [process.env.RR_CORE_EVENT_ENDPOINT]
 };
 
 function handleEvent(kinesisEvent) {
   var event = {
     sequenceNumber: kinesisEvent.sequenceNumber,
-    channel: kinesisEvent.partitionKey,
     data: new Buffer(kinesisEvent.data, 'base64').toString('ascii'),
     timestamp: kinesisEvent.approximateArrivalTimestamp
   };
@@ -17,10 +16,10 @@ function handleEvent(kinesisEvent) {
 }
 
 function notifySubscribers(event) {
-  var relevantSubscribers = _.get(subscribers, event.channel);
+  var relevantSubscribers = _.get(subscribers, event.data.type);
 
   if (_.isEmpty(relevantSubscribers)) {
-    console.log('No one cares about this eventType:', event.channel);
+    console.log('No one cares about this eventType:', event.data.type);
   }
 
   _.each(relevantSubscribers, notify(event));
