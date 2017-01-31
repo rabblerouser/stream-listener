@@ -2,8 +2,11 @@
 
 set -e
 
+echo 'CLEANING'
+rm -rf node_modules
+
 echo 'INSTALLING DEPENDENCIES'
-npm install
+npm install --production
 
 echo 'RUNNING TESTS'
 npm test
