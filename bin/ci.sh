@@ -2,6 +2,9 @@
 
 set -e
 
+echo 'INSTALLING DEPENDENCIES'
+npm install
+
 echo 'RUNNING TESTS'
 npm test
 
