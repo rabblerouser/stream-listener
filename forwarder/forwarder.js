@@ -12,6 +12,7 @@ function handleEvent(kinesisEvent) {
     data: new Buffer(kinesisEvent.data, 'base64').toString('ascii'),
     timestamp: kinesisEvent.approximateArrivalTimestamp
   };
+  console.log('processing event:', event);
   notifySubscribers(event);
 }
 
