@@ -13,7 +13,7 @@ let kinesisEvent = {
                 "kinesisSchemaVersion": "1.0",
                 "partitionKey": "member-registered",
                 "sequenceNumber": "49569625073747986051284015760176917265900404709609439234",
-                "data": "d2UgYXJlIHN0cmVhbWluZyBldmVudHM=",
+                "data": "eyJtZXNzYWdlIjogImhpIn0=",
                 "approximateArrivalTimestamp": 1485507652.516
             },
             "eventSource": "aws:kinesis",
