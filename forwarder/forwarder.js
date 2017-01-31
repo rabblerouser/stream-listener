@@ -7,20 +7,17 @@ var subscribers = {
 };
 
 function handleEvent(kinesisEvent) {
-  var event = {
-    sequenceNumber: kinesisEvent.sequenceNumber,
-    data: new Buffer(kinesisEvent.data, 'base64').toString('ascii'),
-    timestamp: kinesisEvent.approximateArrivalTimestamp
-  };
+  var event = JSON.parse(new Buffer(kinesisEvent.data, 'base64').toString('ascii'));
+
   console.log('processing event:', event);
   notifySubscribers(event);
 }
 
 function notifySubscribers(event) {
-  var relevantSubscribers = _.get(subscribers, event.data.type);
+  var relevantSubscribers = _.get(subscribers, event.type);
 
   if (_.isEmpty(relevantSubscribers)) {
-    console.log('No one cares about this eventType:', event.data.type);
+    console.log('No one cares about this eventType:', event.type);
   }
 
   _.each(relevantSubscribers, notify(event));
