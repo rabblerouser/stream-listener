@@ -1,7 +1,12 @@
 #!/bin/bash
 
-echo 'Build is passing!'
+set -e
 
-# Run the tests
-# Zip up the codes
-# Upload the zip to S3
+echo 'RUNNING TESTS'
+npm test
+
+echo 'PACKAGING THE CODE'
+tar -cvzf rabblerouser_stream_listener_lambda.tar.gz forwarder/ node_modules/
+
+echo 'UPLOADING TO S3'
+aws s3 cp rabblerouser_stream_listener_lambda.tar.gz s3://rabblerouser-artefacts/lambdas/stream_listener/rabblerouser_stream_listener_lambda.tar.gz
