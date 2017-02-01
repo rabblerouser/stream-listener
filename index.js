@@ -1,7 +1,6 @@
 'use strict';
 
 const request = require('request-promise');
-const subscribers = [process.env.RR_CORE_EVENT_ENDPOINT];
 
 exports.handler = (event, context, callback) => {
   event.Records.forEach(record => {
@@ -13,6 +12,7 @@ exports.handler = (event, context, callback) => {
 function handleEvent(kinesisEvent) {
   const event = JSON.parse(new Buffer(kinesisEvent.data, 'base64').toString('ascii'));
 
+  const subscribers = [process.env.RR_CORE_EVENT_ENDPOINT];
   subscribers.forEach(subscriber => {
     const options = {
       method: 'POST',

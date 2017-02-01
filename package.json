@@ -4,6 +4,7 @@
   "description": "A lambda function that receives all events from a kinesis stream and forwards them to APIs over HTTP",
   "main": "index.js",
   "scripts": {
+    "demo": "node demo/index.js",
     "test": "node test/index.js"
   },
   "repository": {
@@ -37,7 +38,6 @@
   },
   "homepage": "https://github.com/rabblerouser/rabblerouser-event-forwarder#readme",
   "dependencies": {
-    "lodash": "^4.17.4",
     "request": "^2.79.0",
     "request-promise": "^4.1.1"
   },
