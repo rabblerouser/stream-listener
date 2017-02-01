@@ -18,7 +18,10 @@ function handleEvent(kinesisEvent) {
       method: 'POST',
       uri: subscriber,
       body: event,
-      json: true
+      json: true,
+      headers: {
+        Authorization: process.env.EVENT_AUTH_TOKEN,
+      },
     };
 
     request(options)
