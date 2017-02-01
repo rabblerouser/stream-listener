@@ -10,7 +10,7 @@ exports.handler = (event, context, callback) => {
 };
 
 function handleEvent(kinesisEvent) {
-  const event = JSON.parse(new Buffer(kinesisEvent.data, 'base64').toString('ascii'));
+  const event = JSON.parse(new Buffer(kinesisEvent.data, 'base64'));
 
   const subscribers = [process.env.RR_CORE_EVENT_ENDPOINT];
   subscribers.forEach(subscriber => {

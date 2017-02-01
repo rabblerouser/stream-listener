@@ -14,7 +14,7 @@ app.post('/events', (req, res) => {
 });
 
 // It listens on this port
-app.listen(3131, function () {});
+app.listen(3131);
 
 
 // Load the forwarder lambda function and configure it
