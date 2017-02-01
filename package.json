@@ -1,14 +1,14 @@
 {
-  "name": "stream-consumer-spike",
+  "name": "rabblerouser-event-forwarder",
   "version": "0.0.1",
-  "description": "A spike for one crazy idea to create NodeJS stream clients with a Lambda instead of a Java dependency.",
+  "description": "A lambda function that receives all events from a kinesis stream and forwards them to APIs over HTTP",
   "main": "index.js",
   "scripts": {
     "test": "node test/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pameck/stream-consumer-spike.git"
+    "url": "git+https://github.com/rabblerouser/rabblerouser-event-forwarder.git"
   },
   "keywords": [
     "stream",
@@ -16,12 +16,26 @@
     "aws",
     "nodejs"
   ],
-  "author": "Pam Rucinque",
+  "author": {
+    "name": "The Rabble Rouser Team",
+    "email": "rabblerouserproject@gmail.com",
+    "url": "https://rabblerouser.team"
+  },
+  "contributors": [
+    {
+      "name": "Pam Rucinque",
+      "url": "https://github.com/pameck"
+    },
+    {
+      "name": "Cam Jackson",
+      "url": "https://github.com/camjackson"
+    }
+  ],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pameck/stream-consumer-spike/issues"
+    "url": "https://github.com/rabblerouser/rabblerouser-event-forwarder/issues"
   },
-  "homepage": "https://github.com/pameck/stream-consumer-spike#readme",
+  "homepage": "https://github.com/rabblerouser/rabblerouser-event-forwarder#readme",
   "dependencies": {
     "lodash": "^4.17.4",
     "request": "^2.79.0",
