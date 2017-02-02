@@ -12,20 +12,17 @@ exports.handler = (event, context, callback) => {
 function handleEvent(kinesisEvent) {
   const event = JSON.parse(new Buffer(kinesisEvent.data, 'base64'));
 
-  const subscribers = [process.env.RR_CORE_EVENT_ENDPOINT];
-  subscribers.forEach(subscriber => {
-    const options = {
-      method: 'POST',
-      uri: subscriber,
-      body: event,
-      json: true,
-      headers: {
-        Authorization: process.env.EVENT_AUTH_TOKEN,
-      },
-    };
+  const options = {
+    method: 'POST',
+    uri: process.env.EVENT_ENDPOINT,
+    body: event,
+    json: true,
+    headers: {
+      Authorization: process.env.EVENT_AUTH_TOKEN,
+    },
+  };
 
-    request(options)
-      .then(console.log)
-      .catch(console.error);
-  });
+  request(options)
+    .then(console.log)
+    .catch(console.error);
 }

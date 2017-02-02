@@ -1,12 +1,12 @@
 # rabblerouser-event-forwarder
 
-A lambda function that receives all events from a kinesis stream and forwards them to APIs over HTTP
+A lambda function that receives all events from a kinesis stream and forwards them to an API over HTTP
 
 ## Background.
 AWS Kinesis consumers need to be constantly polling the stream for new events (with a dedicated thread for it).
 NodeJS will struggle with this as it is single-threaded.
 
-This is a lambda function that can do that dedicated job, and forward events to consumers via HTTP.
+This is a lambda function that can do that dedicated job, and forward events to a consumer via HTTP.
 
 ![Solution](docs/event-pub-sub.png)
 
