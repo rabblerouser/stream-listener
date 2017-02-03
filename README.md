@@ -31,3 +31,21 @@ to, and a consumer endpoint where events should be forwarded to.
 
 With that in mind, the easiest way to deploy this right now is as part of a whole Rabble Rouser stack. See
 [rabblerouser-infra](https://github.com/rabblerouser/rabblerouser-infra) for how to do that.
+
+## Error handling
+Lambda functions always notify the caller as to whether the function finished successfully or not. When the event source
+is a kinesis stream, success means that the next batch of events can be sent, whereas failure means that the batch needs
+to be retried.
+
+Success/failure for this event forwarder lambda is based on the HTTP status code of the service that it POSTs events to.
+This means that if the service is down, or failing for some reason, the events will be retried until the service
+responds with a success code.
+
+The other thing to remember is that the lambda can receive a batch multiple of events in a single call. This is
+problematic if some of the events in the batch were processed successfully and others failed, especially if you
+need to be sure that each event is only processed once. For that reason, it's recommended that this lambda function is
+deployed with a maximum batch size of 1 in its configuration. This ensures that each individual event can succeed or
+fail atomically.
+
+Processing one event at a time is a bit of an anti-pattern, however. It would be good if we had a way for a batch of
+events to partially succeed/fail, so that only the failed ones are retried.
