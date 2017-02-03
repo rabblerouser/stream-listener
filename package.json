@@ -4,7 +4,7 @@
   "description": "A lambda function that receives all events from a kinesis stream and forwards them to APIs over HTTP",
   "main": "index.js",
   "scripts": {
-    "demo": "node demo/index.js",
+    "start": "node localDev.js",
     "test": "NODE_ENV=test mocha -r src/__tests__/testGlobals.js --recursive src/__tests__"
   },
   "repository": {
@@ -42,9 +42,8 @@
     "request-promise": "^4.1.1"
   },
   "devDependencies": {
-    "body-parser": "^1.16.0",
+    "aws-sdk": "^2.9.0",
     "chai": "^3.5.0",
-    "express": "^4.14.0",
     "mocha": "^3.2.0",
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0"

@@ -10,17 +10,20 @@ This is a lambda function that can do that dedicated job, and forward events to 
 
 ![Solution](docs/event-pub-sub.png)
 
-## Local development
-Run the tests like this:
-
+## Install and run the tests
 ```sh
+npm install
 npm test
 ```
 
-Run the demo to see if it works. If it prints a request body, then it probably works.
+## Run it locally
+In production this lambda is invoked by AWS whenever there's a new event on the stream. For local development, there is
+a script that simulates this by polling a local kinesis instance forever, and calling the lambda whenever new events
+arrive. Right now it also hard-codes the configuration to post all events to a local instance of rabblerouser-core.
+So assuming you already have kinesis and rabblerouser-core running, you can just run this lambda like a normal app:
 
 ```sh
-npm run demo
+npm start
 ```
 
 ## Deployment
