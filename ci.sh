@@ -6,10 +6,13 @@ echo 'CLEANING'
 rm -rf node_modules
 
 echo 'INSTALLING DEPENDENCIES'
-npm install --production
+npm install
 
 echo 'RUNNING TESTS'
 npm test
+
+echo 'REMOVING DEV DEPENDENCIES'
+npm prune --production
 
 echo 'PACKAGING THE CODE'
 zip -r rabblerouser_event_forwarder.zip index.js src node_modules/ -x __tests__
