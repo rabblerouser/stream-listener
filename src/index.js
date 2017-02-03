@@ -6,8 +6,8 @@ module.exports = (request, uri, auth) => (event, context, callback) => {
   ));
 
   return Promise.all(promises).then(
-    () => { console.log('success'); callback(null, 'ok') },
-    (err) => { console.log('failure'); callback(err) }
+    () => { callback(null, 'ok'); },
+    (err) => { callback(err); }
   );
 };
 
