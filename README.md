@@ -8,8 +8,6 @@ NodeJS will struggle with this as it is single-threaded.
 
 This is a lambda function that can do that dedicated job, and forward events to a consumer via HTTP.
 
-![Solution](docs/event-pub-sub.png)
-
 ## Install and run the tests
 ```sh
 npm install
