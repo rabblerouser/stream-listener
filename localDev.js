@@ -1,7 +1,7 @@
 process.env.EVENT_ENDPOINT = 'http://localhost:3000/events';
 process.env.EVENT_AUTH_TOKEN = 'secret';
 
-const eventForwarder = require('..').handler;
+const eventForwarder = require('.').handler;
 const AWS = require('aws-sdk')
 
 const kinesis = new AWS.Kinesis({
