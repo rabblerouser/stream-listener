@@ -5,11 +5,7 @@ const handler = require('../');
 describe('handler', () => {
   let request;
   let callback;
-  const event = {
-    Records: [
-      { kinesis: { data: new Buffer(JSON.stringify({ some: 'event' })).toString('base64') } },
-    ],
-  };
+  const event = { Records: [{ kinesis: "I'm a kinesis payload" }] };
 
   beforeEach(() => {
     request = sinon.stub();
@@ -21,7 +17,7 @@ describe('handler', () => {
       expect(request).to.have.been.calledWith({
         method: 'POST',
         uri: 'example.com/events',
-        body: { some: 'event' },
+        body: "I'm a kinesis payload",
         json: true,
         headers: {
           Authorization: 'secret',
