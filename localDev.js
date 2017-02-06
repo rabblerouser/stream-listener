@@ -1,7 +1,4 @@
-process.env.EVENT_ENDPOINT = 'http://localhost:3000/events';
-process.env.EVENT_AUTH_TOKEN = 'secret';
-
-const eventForwarder = require('.').handler;
+const lambda = require('.').handler;
 const AWS = require('aws-sdk')
 
 const kinesis = new AWS.Kinesis({
@@ -11,13 +8,20 @@ const kinesis = new AWS.Kinesis({
   secretAccessKey: 'ALSO FAKE',
 });
 
-const callback = (err, result) => err ? console.err('Handler failed:', err) : console.log('Handler suceeded:', result);
+const callback = (err, result) => err ? console.error('Handler failed:', err) : console.log('Handler suceeded:', result);
+
+const mapKinesisRecord = record => ({
+  data: record.Data,
+  sequenceNumber: record.SequenceNumber,
+  approximateArrivalTimestamp: record.ApproximateArrivalTimestamp,
+  partitionKey: record.PartitionKey,
+});
 
 const fetchAndProcessRecords = (shardIterator) => {
   return kinesis.getRecords({ ShardIterator: shardIterator }).promise().then((records) => {
-    records.Records.forEach(record => {
-      const event = { Records: [{ kinesis: { data: record.Data } }] };
-      eventForwarder(event, null, callback);
+    records.Records.forEach(kinesisRecord => {
+      const event = { Records: [{ kinesis: mapKinesisRecord(kinesisRecord) }] };
+      lambda(event, null, callback);
     });
     setTimeout(() => fetchAndProcessRecords(records.NextShardIterator), 500);
   });
