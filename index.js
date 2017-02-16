@@ -3,6 +3,6 @@
 const request = require('request-promise');
 const handler = require('./src');
 
-const endpoint = process.env.EVENT_ENDPOINT || 'http://localhost:3000/events';
-const authToken = process.env.EVENT_AUTH_TOKEN || 'secret';
+const endpoint = process.env.LISTENER_ENDPOINT || 'http://localhost:3000/events';
+const authToken = process.env.LISTENER_AUTH_TOKEN || 'secret';
 exports.handler = handler(request, endpoint, authToken);
