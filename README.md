@@ -15,14 +15,18 @@ npm test
 ```
 
 ## Run it locally
-In production this lambda is invoked by AWS whenever there's a new event on the stream. For local development, there is
-a script that simulates this by polling a local kinesis instance forever, and calling the lambda whenever new events
-arrive. Right now it also hard-codes the configuration to post all events to a local instance of rabblerouser-core.
-So assuming you already have kinesis and rabblerouser-core running, you can just run this lambda like a normal app:
+You can either run it natively:
 
 ```sh
-npm start
+KINESIS_ENDPOINT'http://localhost:4567' STREAM_NAME='rabblerouser_stream' npm start
 ```
+
+Or you can build the docker image like this...
+```sh
+docker build -t rabblerouser/event-forwarder .
+```
+
+... and then run it with docker-compose. E.g. see [rabblerouser-core](https://github.com/rabblerouser/rabblerouser-core).
 
 ## Deployment
 There is a build pipeline for this project, it publishes the zipped code to an s3 bucket.
