@@ -15,7 +15,7 @@ echo 'REMOVING DEV DEPENDENCIES'
 npm prune --production
 
 echo 'PACKAGING THE CODE'
-zip -r rabblerouser_event_forwarder.zip index.js src node_modules/ -x __tests__
+zip -r event_forwarder.zip index.js src node_modules/ -x __tests__
 
 echo 'UPLOADING TO S3'
-aws s3 cp rabblerouser_event_forwarder.zip s3://rabblerouser-artefacts/lambdas/rabblerouser_event_forwarder.zip
+aws s3 cp event_forwarder.zip s3://rabblerouser-artefacts/lambdas/event_forwarder.zip

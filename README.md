@@ -1,4 +1,4 @@
-# rabblerouser-event-forwarder
+# Rabblerouser Event Forwarder
 
 A lambda function that receives all events from a kinesis stream and forwards them to an API over HTTP
 
@@ -26,7 +26,7 @@ Or you can build the docker image like this...
 docker build -t rabblerouser/event-forwarder .
 ```
 
-... and then run it with docker-compose. E.g. see [rabblerouser-core](https://github.com/rabblerouser/rabblerouser-core).
+... and then run it with docker-compose. E.g. see [core](https://github.com/rabblerouser/core).
 
 ## Deployment
 There is a build pipeline for this project, it publishes the zipped code to an s3 bucket.
@@ -35,7 +35,7 @@ Actual deployment of this lambda function requires a few moving parts, such as I
 to, and a consumer endpoint where events should be forwarded to.
 
 With that in mind, the easiest way to deploy this right now is as part of a whole Rabble Rouser stack. See
-[rabblerouser-infra](https://github.com/rabblerouser/rabblerouser-infra) for how to do that.
+[infra](https://github.com/rabblerouser/infra) for how to do that.
 
 ## API Reference
 
