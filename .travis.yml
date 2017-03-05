@@ -1,0 +1,11 @@
+sudo: required
+services:
+- docker
+
+language: node_js
+node_js:
+  - "6"
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then lambda-deploy.sh; fi
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then ./docker-build-and-deploy.sh; fi

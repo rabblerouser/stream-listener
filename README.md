@@ -1,5 +1,7 @@
 # Rabblerouser Event Forwarder
 
+[![Build Status](https://travis-ci.org/rabblerouser/event-forwarder.svg?branch=master)](https://travis-ci.org/rabblerouser/event-forwarder)
+
 A lambda function that receives all events from a kinesis stream and forwards them to an API over HTTP
 
 ## Background.
