@@ -6,6 +6,7 @@ describe('handler', () => {
   let request;
   let callback;
   const event = { Records: [{ kinesis: "I'm a kinesis payload" }] };
+  const console = { log: _ => _, warn: _ => _, error: _ => _ };
 
   beforeEach(() => {
     request = sinon.stub();
@@ -13,7 +14,8 @@ describe('handler', () => {
   })
 
   it('POSTs the event and succeeds when the POSTing succeeds', () => {
-    return handler(request, 'example.com/events', 'secret')(event, null, callback).then(() => {
+    request.returns(Promise.resolve());
+    return handler(request, 'example.com/events', 'secret', console)(event, null, callback).then(() => {
       expect(request).to.have.been.calledWith({
         method: 'POST',
         uri: 'example.com/events',
@@ -30,7 +32,7 @@ describe('handler', () => {
   it('fails when POSTing fails', () => {
     request.returns(Promise.reject('Error!'));
 
-    return handler(request, '', '')(event, null, callback).then(() => {
+    return handler(request, '', '', console)(event, null, callback).then(() => {
       expect(callback).to.have.been.calledWith('Error!');
     });
   });
