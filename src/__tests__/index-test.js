@@ -14,7 +14,7 @@ describe('handler', () => {
   })
 
   it('POSTs the event and succeeds when the POSTing succeeds', () => {
-    request.returns(Promise.resolve());
+    request.resolves();
     return handler(request, 'example.com/events', 'secret', console)(event, null, callback).then(() => {
       expect(request).to.have.been.calledWith({
         method: 'POST',
@@ -30,10 +30,11 @@ describe('handler', () => {
   });
 
   it('fails when POSTing fails', () => {
-    request.returns(Promise.reject('Error!'));
+    const error = new Error('Error!')
+    request.rejects(error);
 
     return handler(request, '', '', console)(event, null, callback).then(() => {
-      expect(callback).to.have.been.calledWith('Error!');
+      expect(callback).to.have.been.calledWith(error);
     });
   });
 });
