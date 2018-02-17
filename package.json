@@ -2,51 +2,25 @@
   "name": "@rabblerouser/event-forwarder",
   "version": "0.0.1",
   "description": "A lambda function that receives all events from a kinesis stream and forwards them to APIs over HTTP",
-  "main": "index.js",
   "scripts": {
-    "start": "node localDev.js",
+    "start": "nodemon -L localDev.js",
     "test": "NODE_ENV=test mocha -r src/__tests__/testGlobals.js --recursive src/__tests__"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rabblerouser/event-forwarder.git"
+    "url": "https://github.com/rabblerouser/event-forwarder.git"
   },
-  "keywords": [
-    "stream",
-    "spike",
-    "aws",
-    "nodejs"
-  ],
-  "author": {
-    "name": "The Rabble Rouser Team",
-    "email": "rabblerouserproject@gmail.com",
-    "url": "https://rabblerouser.team"
-  },
-  "contributors": [
-    {
-      "name": "Pam Rucinque",
-      "url": "https://github.com/pameck"
-    },
-    {
-      "name": "Cam Jackson",
-      "url": "https://github.com/camjackson"
-    }
-  ],
   "license": "AGPL-3.0",
-  "bugs": {
-    "url": "https://github.com/rabblerouser/event-forwarder/issues"
-  },
-  "homepage": "https://github.com/rabblerouser/event-forwarder#readme",
   "dependencies": {
     "request": "^2.79.0",
     "request-promise": "^4.1.1"
   },
   "devDependencies": {
     "@rabblerouser/local-kinesis-lambda-runner": "^0.2.5",
-    "aws-sdk": "^2.9.0",
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
-    "sinon": "^1.17.7",
-    "sinon-chai": "^2.8.0"
+    "nodemon": "^1.15.0",
+    "sinon": "^4.3.0",
+    "sinon-chai": "^2.14.0"
   }
 }
