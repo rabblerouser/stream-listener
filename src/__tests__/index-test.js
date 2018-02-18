@@ -29,6 +29,30 @@ describe('handler', () => {
     });
   });
 
+  it('only sends one event at a time', () => {
+    let requestInProgress = false;
+    request.callsFake(() => {
+      if (requestInProgress) {
+        return Promise.reject('Expected event-forwarder not to make concurrent requests');
+      }
+      requestInProgress = true;
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          // After 100ms, the fake request finishes and the promise resolves
+          requestInProgress = false;
+          resolve();
+        }, 100)
+      });
+    });
+
+    const doubleEvent = { Records: [{ kinesis: "first" }, { kinesis: 'second' }] };
+    return handler(request, 'example.com/events', 'secret', console)(doubleEvent, null, callback)
+      .then(() => {
+        expect(request).to.have.callCount(2);
+        expect(callback).to.have.been.calledWith(null, 'ok');
+      });
+  });
+
   it('fails when POSTing fails', () => {
     const error = new Error('Error!')
     request.rejects(error);
