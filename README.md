@@ -1,15 +1,18 @@
-# Rabblerouser Event Forwarder
+# Rabble Rouser Event Forwarder
 
 [![Build Status](https://travis-ci.org/rabblerouser/event-forwarder.svg?branch=master)](https://travis-ci.org/rabblerouser/event-forwarder)
+
+This is the Event Forwarder application of the [Rabble Rouser](https://rabblerouser.team/) platform.
 
 A lambda function that receives all events from a kinesis stream and forwards them to an API over HTTP
 
 ## Background
 
-AWS Kinesis consumers need to be constantly polling the stream for new events (with a dedicated thread for it).
-NodeJS will struggle with this as it is single-threaded.
+This code base works when deployed as an [AWS Lambda](https://aws.amazon.com/lambda/) application.
 
-This is a lambda function that can do that dedicated job, and forward events to a consumer via HTTP.
+AWS Kinesis consumers need to be constantly polling the stream for new events (with a dedicated thread for it). NodeJS will struggle with this as it is single-threaded.
+
+This is a Lambda application that can do that dedicated job, and forward events to a consumer via an HTTP API.
 
 ## Install and run the tests
 
@@ -41,8 +44,10 @@ There is a build pipeline for this project, it publishes the zipped code to an s
 Actual deployment of this lambda function requires a few moving parts, such as IAM roles, a kinesis stream to subscribe
 to, and a consumer endpoint where events should be forwarded to.
 
-With that in mind, the easiest way to deploy this right now is as part of a whole Rabble Rouser stack. See
-[infra](https://github.com/rabblerouser/infra) for how to do that.
+With that in mind, the easiest way to deploy this right now is as part
+of a whole Rabble Rouser stack.
+See the [infra repository](https://github.com/rabblerouser/infra) for
+how to do that.
 
 ## API Reference
 
