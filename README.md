@@ -4,7 +4,8 @@
 
 This is the Event Forwarder application of the [Rabble Rouser](https://rabblerouser.team/) platform.
 
-The Event Forwarder is a service that receives all events from a kinesis stream, and forwards them to a web API.
+The Event Forwarder is a service that receives all events from an AWS
+Kinesis stream, and forwards them to a web API endpoint.
 
 ## Background
 
@@ -39,10 +40,16 @@ docker build -t rabblerouser/event-forwarder .
 
 ## Deployment
 
-There is a build pipeline for this project, it publishes the zipped code to an s3 bucket.
+There is a build pipeline for this project, it publishes the zipped code to an [Amazon S3](https://aws.amazon.com/s3/) bucket.
 
-Actual deployment of this application requires a few moving parts, such as IAM roles, a kinesis stream to subscribe
-to, and a consumer endpoint where events should be forwarded to.
+Actual deployment of this application requires a few moving parts:
+
+* [AWS IAM](https://aws.amazon.com/iam/) roles.
+
+* An [AWS Kinesis](https://aws.amazon.com/kinesis/) stream to
+  subscribe to.
+
+* A consumer HTTP API endpoint where events should be forwarded to.
 
 With that in mind, the easiest way to deploy this right now is as part
 of a whole Rabble Rouser stack.
