@@ -4,19 +4,22 @@
 
 A lambda function that receives all events from a kinesis stream and forwards them to an API over HTTP
 
-## Background.
+## Background
+
 AWS Kinesis consumers need to be constantly polling the stream for new events (with a dedicated thread for it).
 NodeJS will struggle with this as it is single-threaded.
 
 This is a lambda function that can do that dedicated job, and forward events to a consumer via HTTP.
 
 ## Install and run the tests
+
 ```sh
 yarn
 yarn test
 ```
 
 ## Run it locally
+
 You can either run it natively:
 
 ```sh
@@ -24,6 +27,7 @@ KINESIS_ENDPOINT'http://localhost:4567' STREAM_NAME='rabblerouser_stream' yarn s
 ```
 
 Or you can build the docker image like this...
+
 ```sh
 docker build -t rabblerouser/event-forwarder .
 ```
@@ -31,6 +35,7 @@ docker build -t rabblerouser/event-forwarder .
 ... and then run it with docker-compose. E.g. see [core](https://github.com/rabblerouser/core).
 
 ## Deployment
+
 There is a build pipeline for this project, it publishes the zipped code to an s3 bucket.
 
 Actual deployment of this lambda function requires a few moving parts, such as IAM roles, a kinesis stream to subscribe
@@ -83,6 +88,7 @@ This lambda function sends an HTTP POST request to a configurable endpoint, with
 ```
 
 ## Error handling
+
 Lambda functions always notify the caller as to whether the function finished successfully or not. When the event source
 is a kinesis stream, success means that the next batch of events can be sent, whereas failure means that the batch needs
 to be retried.
