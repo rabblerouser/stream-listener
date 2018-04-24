@@ -27,7 +27,7 @@ yarn test
 You can either run it natively:
 
 ```sh
-KINESIS_ENDPOINT'http://localhost:4567' STREAM_NAME='rabblerouser_stream' yarn start
+KINESIS_ENDPOINT='http://localhost:4567' STREAM_NAME='rabblerouser_stream' yarn start
 ```
 
 Or you can build the docker image like this...
